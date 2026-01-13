@@ -19,7 +19,7 @@ temp/
 *.pem
 secrets/
 
-# 語言/框架特定 (預先加入常見的，後續可根據實際技術堆疊調整)
+# 語言/框架特定
 node_modules/
 __pycache__/
 *.pyc
@@ -28,3 +28,25 @@ venv/
 dist/
 build/
 coverage/
+
+# Flutter/Dart specific
+.dart_tool/
+.flutter-plugins*
+.packages
+.pub-cache/
+.pub/
+/build/
+/ios/Flutter/.last_build_id
+/ios/Flutter/Generated.xcconfig
+/ios/Flutter/flutter_export_environment.sh
+/ios/Flutter/App.framework
+/ios/Flutter/Flutter.framework
+/ios/Flutter/Generated.xcconfig
+/android/key.properties
+/android/app/local.properties
+/android/app/google-services.json
+/android/app/generated_sigin_config.json
+/android/app/src/main/assets/google-services.json
+/android/local.properties
+*.iml
+test_gemini_*.py
