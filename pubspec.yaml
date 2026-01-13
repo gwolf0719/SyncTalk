@@ -50,7 +50,7 @@ dependencies:
   
   # UI
   google_fonts: ^7.0.1
-  mic_stream: ^0.7.2
+  flutter_sound: ^9.30.0
 
 dev_dependencies:
   flutter_test:

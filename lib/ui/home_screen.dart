@@ -131,17 +131,60 @@ class _HomeScreenState extends State<HomeScreen> {
                             borderRadius: BorderRadius.circular(16),
                           ),
                           child: Text(
-                            service.chineseContent.isEmpty && service.japaneseContent.isEmpty 
-                                ? "按下麥克風開始對話\n日本話 -> 自動播放\n中文 -> 顯示日文"
-                                : service.chineseContent.isEmpty ? "..." : service.chineseContent,
+                            service.japaneseContent.isNotEmpty 
+                                ? service.japaneseContent 
+                                : service.chineseContent.isNotEmpty
+                                    ? service.chineseContent
+                                    : "按下麥克風開始對話\n日本話 -> 自動播放\n中文 -> 顯示日文",
                             style: GoogleFonts.notoSans(
-                              color: Colors.black54,
-                              fontSize: 16,
+                              color: Colors.black87,
+                              fontSize: 18,
+                              fontWeight: service.japaneseContent.isNotEmpty ? FontWeight.bold : FontWeight.normal,
                               height: 1.5,
                             ),
                             textAlign: TextAlign.center,
                           ),
                         ),
+                        
+                        const SizedBox(height: 24),
+
+                        // 音量指示器 (聲文) - 只要在連線中或已連線就顯示，方便觀察麥克風是否運作
+                        if (service.isConnected || service.isConnecting)
+                          Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: List.generate(15, (index) {
+                                  // 更劇烈的跳動算法
+                                  double peak = 1 - (index - 7).abs() / 8.0;
+                                  double height = 8 + (service.volume * 100 * peak);
+                                  return AnimatedContainer(
+                                    duration: const Duration(milliseconds: 30),
+                                    margin: const EdgeInsets.symmetric(horizontal: 2),
+                                    width: 5,
+                                    height: height,
+                                    decoration: BoxDecoration(
+                                      color: Color.lerp(
+                                        const Color(0xFF2962FF).withValues(alpha: 0.3),
+                                        Colors.blueAccent,
+                                        service.volume,
+                                      ),
+                                      borderRadius: BorderRadius.circular(2),
+                                    ),
+                                  );
+                                }),
+                              ),
+                              const SizedBox(height: 12),
+                              Text(
+                                service.isConnected ? "Gemini 已連線 - 請開始對話" : "正在建立連線並啟動麥克風...",
+                                style: GoogleFonts.notoSans(
+                                  fontSize: 12,
+                                  color: service.isConnected ? Colors.blue : Colors.orange,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ],
+                          ),
                       ],
                     );
                   },

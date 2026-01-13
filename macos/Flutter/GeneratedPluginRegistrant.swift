@@ -6,11 +6,11 @@ import FlutterMacOS
 import Foundation
 
 import audio_session
-import mic_stream
+import flutter_sound
 import path_provider_foundation
 
 func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {
   AudioSessionPlugin.register(with: registry.registrar(forPlugin: "AudioSessionPlugin"))
-  MicStreamPlugin.register(with: registry.registrar(forPlugin: "MicStreamPlugin"))
+  FlutterSoundPlugin.register(with: registry.registrar(forPlugin: "FlutterSoundPlugin"))
   PathProviderPlugin.register(with: registry.registrar(forPlugin: "PathProviderPlugin"))
 }
