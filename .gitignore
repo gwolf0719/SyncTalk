@@ -1,0 +1,30 @@
+
+# 系統檔案
+.DS_Store
+Thumbs.db
+*.swp
+
+# 暫存區與日誌
+*.log
+tmp/
+temp/
+.idea/
+.vscode/
+
+# 環境變數與機敏資料
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+secrets/
+
+# 語言/框架特定 (預先加入常見的，後續可根據實際技術堆疊調整)
+node_modules/
+__pycache__/
+*.pyc
+venv/
+.venv/
+dist/
+build/
+coverage/
