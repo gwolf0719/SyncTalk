@@ -1,0 +1,16 @@
+.git
+.dart_tool
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache
+.pub
+build/
+android/
+ios/
+windows/
+macos/
+linux/
+test/
+.env
+*.log

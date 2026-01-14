@@ -1,52 +1,24 @@
-
-# 系統檔案
-.DS_Store
-Thumbs.db
-*.swp
-
-# 暫存區與日誌
+# Logs
+logs
 *.log
-tmp/
-temp/
-.idea/
-.vscode/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
 
-# 環境變數與機敏資料
-.env
-.env.*
-!.env.example
-*.key
-*.pem
-secrets/
+node_modules
+dist
+dist-ssr
+*.local
 
-# 語言/框架特定
-node_modules/
-__pycache__/
-*.pyc
-venv/
-.venv/
-dist/
-build/
-coverage/
-
-# Flutter/Dart specific
-.dart_tool/
-.flutter-plugins*
-.packages
-.pub-cache/
-.pub/
-/build/
-/ios/Flutter/.last_build_id
-/ios/Flutter/Generated.xcconfig
-/ios/Flutter/flutter_export_environment.sh
-/ios/Flutter/App.framework
-/ios/Flutter/Flutter.framework
-/ios/Flutter/Generated.xcconfig
-/android/key.properties
-/android/app/local.properties
-/android/app/google-services.json
-/android/app/generated_sigin_config.json
-/android/app/src/main/assets/google-services.json
-/android/local.properties
-*.iml
-test_gemini_*.py
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
