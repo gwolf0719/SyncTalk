@@ -1,3 +1,4 @@
+import './utils/remoteLog'
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'
 import './style.css'

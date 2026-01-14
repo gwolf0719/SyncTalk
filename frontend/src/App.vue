@@ -117,7 +117,7 @@ const toggleConnection = () => {
 
     <footer class="py-6 flex flex-col items-center gap-1">
       <div class="text-gray-400 text-sm font-medium">Powered by Google Gemini 1.5 Flash</div>
-      <div class="text-gray-300 text-[10px] uppercase tracking-tighter">Last Updated: 2026-01-14 12:14:00</div>
+      <div class="text-gray-300 text-[10px] uppercase tracking-tighter">Last Updated: 2026-01-14 12:22:00 (修復ScriptProcessor)</div>
     </footer>
   </div>
 </template>

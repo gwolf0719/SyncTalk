@@ -237,18 +237,25 @@ export function useGeminiLive() {
         const inputSampleRate = audioContext.value.sampleRate;
         const targetSampleRate = 16000;
 
+        console.log('[音訊] 採樣率:', inputSampleRate, '→', targetSampleRate);
+
         processor.value.onaudioprocess = (e) => {
             if (socket.value?.readyState !== WebSocket.OPEN) return;
 
             const inputData = e.inputBuffer.getChannelData(0);
 
-            // 降採樣至 16kHz
-            const downsampledData = downsampleBuffer(inputData, inputSampleRate, targetSampleRate);
+            // 降採樣至 16kHz (如果需要)
+            let finalData = inputData;
+            if (inputSampleRate !== targetSampleRate) {
+                finalData = downsampleBuffer(inputData, inputSampleRate, targetSampleRate);
+            }
 
-            // 轉換為 PCM16
-            const pcm16 = new Int16Array(downsampledData.length);
-            for (let i = 0; i < downsampledData.length; i++) {
-                pcm16[i] = Math.max(-1, Math.min(1, downsampledData[i])) * 0x7FFF;
+            // 轉換為 PCM16 並增加音量增益
+            const pcm16 = new Int16Array(finalData.length);
+            for (let i = 0; i < finalData.length; i++) {
+                // 增加 1.5 倍增益，避免聲音太小
+                let s = Math.max(-1, Math.min(1, finalData[i] * 1.5));
+                pcm16[i] = s < 0 ? s * 0x8000 : s * 0x7FFF;
             }
 
             // 發送至 WebSocket
@@ -260,10 +267,15 @@ export function useGeminiLive() {
             }));
         };
 
-        source.connect(processor.value);
-        processor.value.connect(audioContext.value.destination);
+        // 關鍵修復：加入靜音 GainNode 避免回音
+        const gainNode = audioContext.value.createGain();
+        gainNode.gain.value = 0; // 音量設為 0，騙過瀏覽器讓 ScriptProcessor 運作
 
-        console.log('[音訊] 音訊處理管線已建立');
+        source.connect(processor.value);
+        processor.value.connect(gainNode);
+        gainNode.connect(audioContext.value.destination);
+
+        console.log('[音訊] 音訊處理管線已建立 (含靜音節點)');
     };
 
     // 降採樣函數
