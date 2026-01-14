@@ -8,6 +8,9 @@ export const useTranslationStore = defineStore('translation', {
     isConnecting: false,
     errorMessage: null,
     volume: 0,
+    audioSpectrum: new Uint8Array(0),
+    isSilent: false,
+    countdown: 0,
   }),
   actions: {
     setChineseText(text) {
@@ -27,6 +30,15 @@ export const useTranslationStore = defineStore('translation', {
     },
     setVolume(v) {
       this.volume = v;
+    },
+    setAudioSpectrum(data) {
+      this.audioSpectrum = data;
+    },
+    setSilentStatus(status) {
+      this.isSilent = status;
+    },
+    setCountdown(v) {
+      this.countdown = v;
     }
   }
 });
