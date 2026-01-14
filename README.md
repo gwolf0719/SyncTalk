@@ -26,7 +26,7 @@ gcloud builds submit --tag gcr.io/$PROJECT_ID/synctalk
 gcloud run deploy synctalk \
   --image gcr.io/$PROJECT_ID/synctalk \
   --platform managed \
-  --set-env-vars="GEMINI_API_KEY=AIzaSyBF3AqVe2qdq-HEIQpVk6Ys3pTZXVjLmh4" \
+  --set-env-vars="GEMINI_API_KEY=[您的_API_KEY]" \
   --allow-unauthenticated
 ```
 
